@@ -1,4 +1,4 @@
-class Solution:
+ class Solution:
     def minimumSteps(self, s: str) -> int:
         res = left = 0
         for right in range(len(s)):
