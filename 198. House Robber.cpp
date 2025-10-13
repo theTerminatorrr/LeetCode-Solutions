@@ -1,14 +1,25 @@
-class Solution {
+class Solution
+{
 public:
-    int rob(vector<int>& nums) {
-        int prev2_max = 0, prev_max = 0;
+    int rob(vector<int>& nums)
+    {
+        int n = nums.size();
 
-        for (int cur : nums) {
-            int temp = max(cur + prev2_max, prev_max);
-            prev2_max = prev_max;
-            prev_max = temp;
+        if (n == 1)
+        {
+            return nums[0];
         }
 
-        return prev_max;
+        vector<int> dp(n, 0);
+
+        dp[0] = nums[0];
+        dp[1] = max(nums[0], nums[1]);
+
+        for (int i = 2; i < n; i++)
+        {
+            dp[i] = max(dp[i - 1], nums[i] + dp[i - 2]);
+        }
+
+        return dp[n - 1];
     }
 };
